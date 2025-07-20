@@ -1,0 +1,6 @@
+redis:
+  addr: "112.125.93.166:6379"
+  password: "Ljwudao5!xundao"
+zeebe:
+  broker: "localhost:26500"
+  clientId: "zeebe-client"
