@@ -17,8 +17,8 @@ var workerCmd = &cobra.Command{
 	Use:   "worker",
 	Short: "worker 工作节点",
 	Long:  `worker 工作节点`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		// 启动api服务器进行初始化
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		//  启动服务器进行初始化
 		workerCfg := cfgFile
 		if workerCfg == "" {
 			workerCfg = fmt.Sprintf("conf/worker.%s.yaml", env.GetEnv())

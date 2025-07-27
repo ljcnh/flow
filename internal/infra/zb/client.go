@@ -33,11 +33,11 @@ func InitZeebeClient(address string) error {
 	var (
 		err error
 	)
-	retryPolicy := `{
-		"retryPolicy" : {
-			"maxAttempts": 30,
-		}
-	}`
+	// retryPolicy := `{
+	// 	"retryPolicy" : {
+	// 		"maxAttempts": 30,
+	// 	}
+	// }`
 
 	opts := []grpc.DialOption{
 		grpc.WithKeepaliveParams(
@@ -47,7 +47,7 @@ func InitZeebeClient(address string) error {
 				PermitWithoutStream: true,
 			},
 		),
-		grpc.WithDefaultServiceConfig(retryPolicy),
+		// grpc.WithDefaultServiceConfig(retryPolicy),
 	}
 
 	config := &zbc.ClientConfig{
@@ -59,7 +59,7 @@ func InitZeebeClient(address string) error {
 
 	client, err = zbc.NewClient(config)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	return nil

@@ -1,6 +1,17 @@
 redis:
   addr: "112.125.93.166:6379"
-  password: "Ljwudao5!xundao"
+  db: 0
+  pool_size: 10
+  min_idle_conns: 5
+  dial_timeout: 3s
+  read_timeout: 3s
+  write_timeout: 3s
 zeebe:
   broker: "localhost:26500"
   clientId: "zeebe-client"
+mysql:
+  addr: "112.125.93.166"
+  port: "3306"
+  user: "root"
+  password: "Ljwudao5!"
+  dbname: "flow"
