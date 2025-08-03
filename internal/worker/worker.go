@@ -10,19 +10,24 @@ import (
 
 	"github.com/camunda/zeebe/clients/go/v8/pkg/entities"
 	"github.com/camunda/zeebe/clients/go/v8/pkg/worker"
+	"github.com/ljcnh/flow/internal/infra/db"
+	"github.com/ljcnh/flow/internal/infra/redis"
 	"github.com/ljcnh/flow/internal/infra/zb"
 )
 
 func StartWorker() {
 	fmt.Println("worker start")
 	// mysql
-	// if err := db.InitMySQLClient(); err != nil {
-	// panic(err)
-	// }
+	if err := db.InitMySQLClient(); err != nil {
+		panic(err)
+	}
 	// redis
-	// if err := red.InitRedis(); err != nil {
-	// 	panic(err)
-	// }
+	if err := redis.InitRedis(); err != nil {
+		panic(err)
+	}
+
+	// TODO: 初始化 producer
+	// rmq.InitProducer()
 
 	// TODO: 注册 feel
 	// el.RegisterCustomFunction()
@@ -31,6 +36,9 @@ func StartWorker() {
 		panic(err)
 	}
 	zbClient := zb.GetClient()
+
+	// wm := lifecycle.NewJobWorkerManager(zbClient)
+	// ticketStateTransitionBehavior := state.
 
 	worker := zbClient.NewJobWorker().
 		JobType("http-request").
